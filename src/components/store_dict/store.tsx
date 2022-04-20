@@ -40,3 +40,33 @@ export const cardDictionaries = [
         url_imagine: 'https://enter.online/images/product/2022/18/enter-tableta-apple-ipad-2021.webp',
         },
 ];
+
+export const dataMakBook = [
+    {
+        model: '14 2021',
+        audio: 'Dolby Atmos',
+        camera_web: '1080p',
+        segment: 'Home and Office',
+        capacitate_ssd: '1 TB',
+        tip_display: 'Liquid Retina',
+        frecventa_ram: '2400 MHz',
+        },
+        {
+        model: '14 2021',
+        audio: 'Dolby',
+        camera_web: '720p',
+        segment: 'Home and Office',
+        capacitate_ssd: '256 GB',
+        tip_display: 'IPS',
+        frecventa_ram: '4266 MHz',
+        },
+        {
+        model: '13 (2020)',
+        audio: 'Dolby',
+        camera_web: '1080p',
+        segment: 'Home and Office',
+        capacitate_ssd: '512 GB',
+        tip_display: 'Liquid Retina XDR',
+        frecventa_ram: '2133 MHz',
+        }
+]

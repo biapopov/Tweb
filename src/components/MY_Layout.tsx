@@ -1,15 +1,22 @@
-import { Layout, Menu, Form, Input, Button, notification } from 'antd';
+import { Layout, Menu, Form, Input, Button, notification, List, Row } from 'antd';
 
 import { Card } from 'antd';
+import { observer } from 'mobx-react';
+import { useEffect } from 'react';
+import { useRootStore } from '..';
 import './CSS_layout.css';
+import { MyForm } from './form/form_1';
+import { Form_MacBook } from './form/form_2';
+import { IContentModel } from './interface/interface';
+import { CardCustom } from './show_edit_store';
+import { ShowMacBook_Row } from './show_macbook';
 
-import { cardDictionaries } from './store_dict/store';
+import { cardDictionaries, dataMakBook } from './store_dict/store';
 
 const { Header, Content, Footer } = Layout;
 
 
 const MyCard = ({model, culoare, dimensiuni, rezolutie_ecran, wlan, url_imagine} : {model : string, culoare : string, dimensiuni : string, rezolutie_ecran : string, wlan : string, url_imagine : string}) => {
-
     return(
         <Card 
             title={ model }  
@@ -27,96 +34,13 @@ const MyCard = ({model, culoare, dimensiuni, rezolutie_ecran, wlan, url_imagine}
     )
 }
 
-const MyForm = () => {
 
-    const onFinish = (values: any) => {
-        notification.open({
-          message: 'Open Console.log CTRL+Shift+I',
-        });
-        console.log('Success:', values);
-    };
+export const MY_Layout = observer(() => {
+    const { contents, contents_notes } = useRootStore()
 
-    return(
-        <Form
-            name='basic'
-            labelCol={{ span: 9 }}
-            wrapperCol={{ span: 5}}
-            onFinish={onFinish}
-            autoComplete="off"
-        >
-
-<Form.Item
-                label="MODEL:"
-                name="model"
-                rules={[
-                    { required: true, message: 'Introdu  model!!!'}
-                ]}
-            >
-                <Input type={ 'model' } />
-            </Form.Item>
-
-            <Form.Item
-                label="CULOARE:"
-                name="culoare"
-                rules={[
-                    { required: true, message: 'Introdu  culoare!!!'}
-                ]}
-            >
-                <Input type={ 'culoare' } />
-            </Form.Item>
-
-            <Form.Item
-                label="DIMENSIUNI:"
-                name="dimensiuni"
-                rules={[
-                    { required: true, message: 'Introdu  dimensiuni!!!'}
-                ]}
-            >
-                <Input type={ 'dimensiuni' } />
-            </Form.Item>
-
-            <Form.Item
-                label="REZOLUTIE_ECRAN:"
-                name="rezolutie_ecran"
-                rules={[
-                    { required: true, message: 'Introdu  rezolutie_ecran!!!'}
-                ]}
-            >
-                <Input type={ 'rezolutie_ecran' } />
-            </Form.Item>
-
-            <Form.Item
-                label="WLAN:"
-                name="wlan"
-                rules={[
-                    { required: true, message: 'Introdu  wlan!!!'}
-                ]}
-            >
-                <Input type={ 'wlan' } />
-            </Form.Item>
-
-            <Form.Item
-                label="URL_IMAGINE:"
-                name="url_imagine"
-                rules={[
-                    { required: true, message: 'Introdu  url_imagine!!!'}
-                ]}
-            >
-                <Input type={ 'url_imagine' } />
-            </Form.Item>
-
-            <Form.Item wrapperCol={{ offset: 8, span: 7}}>
-                <Button type='primary' htmlType='submit' ghost>
-                    Introdu
-                </Button>
-
-            </Form.Item>
-
-        </Form>
-    )
-}
-
-export const MY_Layout = () => {
+    useEffect(() => {
+        console.log('>>contents_notes', contents_notes)
+    }, [ contents_notes ])
 
     return(
         <Layout className="layout">
@@ -134,12 +58,14 @@ export const MY_Layout = () => {
             <main>
                 
                 <Content style={{ padding: '0 50px' }}>
-               
-                    <MyForm />
+                    <div className="grid_my" >
+                       <MyForm />
+                       <Form_MacBook/>
+                    </div>
+                    
                     
                     <div className="site-layout-content grid-3">                   
 
-                     
                         {
                             cardDictionaries.map((el, index) => {
                                 return(
@@ -149,10 +75,75 @@ export const MY_Layout = () => {
                             })
                         }
                     </div>
+
+                    <div className="table-wrapper">
+                        <table className="fl-table">
+                            <thead>
+                            <tr>
+                                <th>MODEL</th>
+                                <th>AUDIO</th>
+                                <th>CAMERA_WEB</th>
+                                <th>SEGMENT</th>
+                                <th>CAPACITATE_SSD</th>
+                                <th>TIP_DISPLAY</th>
+                                <th>FRECVENTA_RAM</th>
+                            </tr>
+                            </thead>
+
+
+                            <tbody>
+                            {/* {
+                                    dataMakBook.map((esl)=> {
+                                        return(
+                                           //{
+                                              // console.log("--->> ",esl)
+                                            <ShowMacBook_Row describe={esl} describe_extend={esl} />
+                                           //}
+                                        )
+                                    })
+                                   } */}
+                                    { contents_notes.map((content: IContentModel) => {
+                                        return (
+                                            
+                                                <ShowMacBook_Row describe={content} describe_extend={content} />
+                                            
+                                        )
+                                    })
+                                    }
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    {/* <div className='site-layout-content'> */}
+                    <div className="site-layout-content grid-3"> 
+                    {/* <Row gutter={ 16 }> */}
+                        { contents.map((content: IContentModel) => {
+
+                            return (
+                                <CardCustom key={ content.id } content={ content } />
+                            )
+                        }) }
+                    {/* </Row> */}
+                    </div>
+                    {/* </div> */}
+
+                {/* <div>
+                    { contents_notes.map((content: IContentModel) => {
+                        return (
+                            <List.Item>
+                                <Note key={ content.id } content={ content } />
+                            </List.Item>
+                        )
+                    })
+                    }
+
+                </div> */}
+
                 </Content>
             </main>
 
            
       </Layout>
     )
-}
+})
