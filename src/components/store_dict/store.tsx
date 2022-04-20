@@ -1,0 +1,72 @@
+export const cardDictionaries = [
+    {
+        id: '1',
+        seen: false,
+        model: 'iPad 2020',
+        culoare: 'Silver',
+        dimensiuni: '250.6 x 174.1 x 7.5 mm',
+        rezolutie_ecran: '2160 x 1620',
+        wlan: '802.11 ac',
+        url_imagine: 'https://enter.online/images/product/2022/25/enter-tableta-apple-ipad-2020.webp',
+        },
+        {
+        id: '2',
+        seen: false,
+        model: 'iPad Air 2020',
+        culoare: 'Gray',
+        dimensiuni: '247.6 x 178.5 x 6.1 mm',
+        rezolutie_ecran: '2360 x 1640',
+        wlan: '802.11 ach',
+        url_imagine: 'https://enter.online/images/product/2022/37/enter-tableta-apple-ipad-air-2020.webp',
+        },
+        {
+        id: '3',
+        seen: false,
+        model: 'iPad Pro 2021',
+        culoare: 'Gray',
+        dimensiuni: '280.6 x 214.9 x 6.4 mm',
+        rezolutie_ecran: '2732 x 2048',
+        wlan: '802.11 b',
+        url_imagine: 'https://enter.online/images/product/2022/24/enter-tableta-apple-ipad-pro-2021.webp',
+        },
+        {
+        id: '4',
+        seen: false,
+        model: 'iPad 2021',
+        culoare: 'Gray',
+        dimensiuni: '250.6 x 174.1 x 7.5 mm',
+        rezolutie_ecran: '2160 x 1620',
+        wlan: '802.11 ax',
+        url_imagine: 'https://enter.online/images/product/2022/18/enter-tableta-apple-ipad-2021.webp',
+        },
+];
+
+export const dataMakBook = [
+    {
+        model: '14 2021',
+        audio: 'Dolby Atmos',
+        camera_web: '1080p',
+        segment: 'Home and Office',
+        capacitate_ssd: '1 TB',
+        tip_display: 'Liquid Retina',
+        frecventa_ram: '2400 MHz',
+        },
+        {
+        model: '14 2021',
+        audio: 'Dolby',
+        camera_web: '720p',
+        segment: 'Home and Office',
+        capacitate_ssd: '256 GB',
+        tip_display: 'IPS',
+        frecventa_ram: '4266 MHz',
+        },
+        {
+        model: '13 (2020)',
+        audio: 'Dolby',
+        camera_web: '1080p',
+        segment: 'Home and Office',
+        capacitate_ssd: '512 GB',
+        tip_display: 'Liquid Retina XDR',
+        frecventa_ram: '2133 MHz',
+        }
+]
