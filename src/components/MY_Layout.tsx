@@ -7,6 +7,7 @@ import { useRootStore } from '..';
 import './CSS_layout.css';
 import { MyForm } from './form/form_1';
 import { Form_MacBook } from './form/form_2';
+import { Form_LogIN } from './form/form_login';
 import { IContentModel } from './interface/interface';
 import { CardCustom } from './show_edit_store';
 import { ShowMacBook_Row } from './show_macbook';
@@ -60,6 +61,7 @@ export const MY_Layout = observer(() => {
                 <Content style={{ padding: '0 50px' }}>
                     <div className="grid_my" >
                        <MyForm />
+                       <Form_LogIN/>
                        <Form_MacBook/>
                     </div>
                     

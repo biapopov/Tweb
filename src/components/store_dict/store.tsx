@@ -17,7 +17,7 @@ export const cardDictionaries = [
         dimensiuni: '247.6 x 178.5 x 6.1 mm',
         rezolutie_ecran: '2360 x 1640',
         wlan: '802.11 ach',
-        url_imagine: 'https://enter.online/images/product/2022/37/enter-tableta-apple-ipad-air-2020.webp',
+        url_imagine: 'https://enter.online/images/product/2022/05/enter-tableta-apple-ipad-air-2020-086.webp',
         },
         {
         id: '3',
