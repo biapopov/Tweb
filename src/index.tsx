@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { IRootStore } from './components/interface/interface';
 import storeProvider from './components/model_store/store_provider';
+import { BrowserRouter } from 'react-router-dom';
 
 const StoreContext = React.createContext<IRootStore | any>(null)
 
@@ -21,7 +22,9 @@ const StoreProvider = ({ children }: { children: ReactElement }) => {
 ReactDOM.render(
     <React.StrictMode>
         <StoreProvider>
+        <BrowserRouter>
             <App />
+        </BrowserRouter>
         </StoreProvider>
     </React.StrictMode>,
     document.getElementById('root')

@@ -3,11 +3,15 @@ import { Layout, Menu, Form, Input, Button, notification, List, Row } from 'antd
 import { Card } from 'antd';
 import { observer } from 'mobx-react';
 import { useEffect } from 'react';
+import { Link, Route, Routes } from 'react-router-dom';
 import { useRootStore } from '..';
 import './CSS_layout.css';
 import { MyForm } from './form/form_1';
 import { Form_MacBook } from './form/form_2';
+import { Form_LogIN } from './form/form_login';
 import { IContentModel } from './interface/interface';
+import { ShowCardsIPad } from './menu_item_comp/ShowCardsIPad';
+import { ShowTable } from './menu_item_comp/ShowTable';
 import { CardCustom } from './show_edit_store';
 import { ShowMacBook_Row } from './show_macbook';
 
@@ -16,7 +20,7 @@ import { cardDictionaries, dataMakBook } from './store_dict/store';
 const { Header, Content, Footer } = Layout;
 
 
-const MyCard = ({model, culoare, dimensiuni, rezolutie_ecran, wlan, url_imagine} : {model : string, culoare : string, dimensiuni : string, rezolutie_ecran : string, wlan : string, url_imagine : string}) => {
+export const  MyCard = ({model, culoare, dimensiuni, rezolutie_ecran, wlan, url_imagine} : {model : string, culoare : string, dimensiuni : string, rezolutie_ecran : string, wlan : string, url_imagine : string}) => {
     return(
         <Card 
             title={ model }  
@@ -44,106 +48,35 @@ export const MY_Layout = observer(() => {
 
     return(
         <Layout className="layout">
-           
-            
-            <Header>
-                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-                    {new Array(4).fill(null).map((_, index) => {
-                    const key = index + 1;
-                    return <Menu.Item key={key}>{`nav ${key}`}</Menu.Item>;
-                    })}
+             <Header>
+                <Menu theme='dark' mode='horizontal'>
+
+                    <Menu.Item key={1}>
+                        <Link to="/login">Login</Link>
+                    </Menu.Item>
+                    <Menu.Item key={2}>
+                        <Link to="/myform">MyForm</Link>
+                    </Menu.Item>
+                    <Menu.Item key={3}>
+                        <Link to="/form_macbook">Form MacBook</Link>
+                    </Menu.Item>
+                    <Menu.Item key={4}>
+                        <Link to="/cards">Show Cards</Link>
+                    </Menu.Item>
+                    <Menu.Item key={5}>
+                        <Link to="/table">Show Table</Link>
+                    </Menu.Item>              
                 </Menu>
             </Header>
+
+            <Routes>
+                <Route path='/login' element={ <Form_LogIN/> } />
+                <Route path='/myform' element={<MyForm />} />
+                <Route path='/form_macbook' element={<Form_MacBook/>} />
+                <Route path='/cards' element={<ShowCardsIPad/>} />
+                <Route path='/table' element={<ShowTable/>} />
+            </Routes>          
             
-            <main>
-                
-                <Content style={{ padding: '0 50px' }}>
-                    <div className="grid_my" >
-                       <MyForm />
-                       <Form_MacBook/>
-                    </div>
-                    
-                    
-                    <div className="site-layout-content grid-3">                   
-
-                        {
-                            cardDictionaries.map((el, index) => {
-                                return(
-
-                                    <MyCard  model={ el.model }  culoare={ el.culoare }  dimensiuni={ el.dimensiuni }  rezolutie_ecran={ el.rezolutie_ecran }  wlan={ el.wlan }  url_imagine={ el.url_imagine }  />
-                                )
-                            })
-                        }
-                    </div>
-
-                    <div className="table-wrapper">
-                        <table className="fl-table">
-                            <thead>
-                            <tr>
-                                <th>MODEL</th>
-                                <th>AUDIO</th>
-                                <th>CAMERA_WEB</th>
-                                <th>SEGMENT</th>
-                                <th>CAPACITATE_SSD</th>
-                                <th>TIP_DISPLAY</th>
-                                <th>FRECVENTA_RAM</th>
-                            </tr>
-                            </thead>
-
-
-                            <tbody>
-                            {/* {
-                                    dataMakBook.map((esl)=> {
-                                        return(
-                                           //{
-                                              // console.log("--->> ",esl)
-                                            <ShowMacBook_Row describe={esl} describe_extend={esl} />
-                                           //}
-                                        )
-                                    })
-                                   } */}
-                                    { contents_notes.map((content: IContentModel) => {
-                                        return (
-                                            
-                                                <ShowMacBook_Row describe={content} describe_extend={content} />
-                                            
-                                        )
-                                    })
-                                    }
-                            </tbody>
-                        </table>
-                    </div>
-
-
-                    {/* <div className='site-layout-content'> */}
-                    <div className="site-layout-content grid-3"> 
-                    {/* <Row gutter={ 16 }> */}
-                        { contents.map((content: IContentModel) => {
-
-                            return (
-                                <CardCustom key={ content.id } content={ content } />
-                            )
-                        }) }
-                    {/* </Row> */}
-                    </div>
-                    {/* </div> */}
-
-                {/* <div>
-                    { contents_notes.map((content: IContentModel) => {
-                        return (
-                            <List.Item>
-                                <Note key={ content.id } content={ content } />
-                            </List.Item>
-                        )
-                    })
-                    }
-
-                </div> */}
-
-                </Content>
-            </main>
-
-           
       </Layout>
     )
 })
